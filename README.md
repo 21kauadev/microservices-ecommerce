@@ -14,4 +14,4 @@ It will be a simple E-commerce application, which contains features related to u
 - Feign -> for microservices communication
 - Eureka -> for Service Registry, Discovery and Load Balancing
 - Swagger API (SpringDoc API) -> for Service Documentation
-- (Maybe) Api Gateway -> for all application routes centralized.
+- Api Gateway -> for all application routes centralized.
