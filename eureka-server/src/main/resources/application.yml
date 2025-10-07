@@ -1,0 +1,9 @@
+server:
+  port: 8761 # rota padrão pra serviços de eureka.
+spring:
+  application:
+    name: eureka-server
+eureka:
+  client: # abaixo, diferencia esse serviço de um serviço comum que se registraria no eureka.
+    register-with-eureka: false # não vai se registrar no eureka (esse serviço é o proprio eureka)
+    fetch-registry: false # eureka já tem a lista de serviços registrados, por já ser a própria lista. não precisa disso.
