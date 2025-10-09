@@ -1,0 +1,6 @@
+server:
+  port: 8765 # porta
+spring:
+  application:
+    name: api-gateway
+# antes de configurar as rotas, preciso dos serviços como user-service
