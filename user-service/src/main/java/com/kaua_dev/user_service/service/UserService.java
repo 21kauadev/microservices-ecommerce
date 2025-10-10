@@ -17,7 +17,6 @@ public class UserService {
     public List<User> getAllUsers() {
         return repository.findAll();
     }
-
     public User getUser(Long id) {
         return repository.findById(id).orElseThrow(UserNotFound::new);
     }
