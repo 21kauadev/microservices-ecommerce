@@ -15,14 +15,14 @@ public class UserService {
     @Autowired
     private UserRepository repository;
 
-    public List<User> getAllUsers() {
+    public List<User> findAll() {
         return repository.findAll();
     }
-    public User getUser(Long id) {
+    public User findById(Long id) {
         return repository.findById(id).orElseThrow(UserNotFound::new);
     }
 
-    public User createUser(UserDTO data) {
+    public User create(UserDTO data) {
         User user = new User();
         user.setName(data.name());
         user.setEmail(data.email());
@@ -31,7 +31,7 @@ public class UserService {
         return repository.save(user);
     }
 
-    public User updateUser(Long id, UserDTO data) {
+    public User update(Long id, UserDTO data) {
         User user = repository.findById(id).orElseThrow(UserNotFound::new);
 
         user.setName(data.name());
@@ -41,7 +41,7 @@ public class UserService {
         return repository.save(user);
     }
 
-    public void deleteUser(Long id) {
+    public void delete(Long id) {
         User user = repository.findById(id).orElseThrow(UserNotFound::new);
 
         repository.delete(user);
