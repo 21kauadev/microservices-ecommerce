@@ -1,6 +1,7 @@
 package com.kaua_dev.user_service.service;
 
 import com.kaua_dev.user_service.domain.user.User;
+import com.kaua_dev.user_service.domain.user.UserDTO;
 import com.kaua_dev.user_service.domain.user.exceptions.UserNotFound;
 import com.kaua_dev.user_service.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,5 +20,30 @@ public class UserService {
     }
     public User getUser(Long id) {
         return repository.findById(id).orElseThrow(UserNotFound::new);
+    }
+
+    public User createUser(UserDTO data) {
+        User user = new User();
+        user.setName(data.name());
+        user.setEmail(data.email());
+        user.setPassword(data.password());
+
+        return repository.save(user);
+    }
+
+    public User updateUser(Long id, UserDTO data) {
+        User user = repository.findById(id).orElseThrow(UserNotFound::new);
+
+        user.setName(data.name());
+        user.setEmail(data.email());
+        user.setPassword(data.password());
+
+        return repository.save(user);
+    }
+
+    public void deleteUser(Long id) {
+        User user = repository.findById(id).orElseThrow(UserNotFound::new);
+
+        repository.delete(user);
     }
 }

@@ -1,15 +1,13 @@
 package com.kaua_dev.user_service.controller;
 
 import com.kaua_dev.user_service.domain.user.User;
+import com.kaua_dev.user_service.domain.user.UserDTO;
 import com.kaua_dev.user_service.infra.ApiResponse;
 import com.kaua_dev.user_service.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,6 +32,33 @@ public class UserController {
         User user = service.getUser(id);
         ApiResponse<User> response =
                 new ApiResponse<>(HttpStatus.OK.value(), true, "Found user", user);
+
+        return ResponseEntity.ok().body(response);
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity<ApiResponse<User>> createUser(@RequestBody UserDTO data) {
+        User user = service.createUser(data);
+        ApiResponse<User> response =
+                new ApiResponse<>(HttpStatus.OK.value(), true, "Created user", user);
+
+        return ResponseEntity.ok().body(response);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<ApiResponse<User>> updateUser(@PathVariable("id") Long id, @RequestBody UserDTO data) {
+        User user = service.updateUser(id, data);
+        ApiResponse<User> response =
+                new ApiResponse<>(HttpStatus.OK.value(), true, "Updated user", user);
+
+        return ResponseEntity.ok().body(response);
+    }
+
+    @PutMapping("/delete")
+    public ResponseEntity<ApiResponse<User>> deleteUser(@PathVariable("id") Long id, @RequestBody UserDTO data) {
+        User user = service.updateUser(id, data);
+        ApiResponse<User> response =
+                new ApiResponse<>(HttpStatus.OK.value(), true, "Updated user", user);
 
         return ResponseEntity.ok().body(response);
     }
