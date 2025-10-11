@@ -12,11 +12,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user-service")
+@RequestMapping("/users")
 public class UserController {
 
-    @Autowired
-    private UserService service;
+    // injetar via construtor acaba sendo uma melhor prática para manutenção, testes e prevenir erros de execução!
+//    @Autowired
+//    private UserService service;
+
+    private final UserService service;
+
+    public UserController(UserService service) {
+        this.service = service;
+    }
 
     @GetMapping
     public ResponseEntity<ApiResponse<List<User>>> findAll() {
