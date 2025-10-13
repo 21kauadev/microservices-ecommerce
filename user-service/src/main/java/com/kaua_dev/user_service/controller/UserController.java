@@ -67,6 +67,6 @@ public class UserController {
         ApiResponse<User> response =
                 new ApiResponse<>(HttpStatus.OK.value(), true, "Deleted user", null);
 
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(response);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }

@@ -37,9 +37,9 @@ public class UserService {
     public User update(Long id, UserDTO data) {
         User user = repository.findById(id).orElseThrow(UserNotFound::new);
 
-        user.setName(data.name());
-        user.setEmail(data.email());
-        user.setPassword(data.password());
+        if (data.name() != null) user.setName(data.name());
+        if (data.email() != null) user.setEmail(data.email());
+        if (data.password() != null) user.setPassword(data.password());
 
         return repository.save(user);
     }
