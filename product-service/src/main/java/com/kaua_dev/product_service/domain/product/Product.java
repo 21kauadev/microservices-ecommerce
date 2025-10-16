@@ -3,7 +3,6 @@ package com.kaua_dev.product_service.domain.product;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDateTime;
 
@@ -50,6 +49,5 @@ public class Product {
     public void setStock(Integer stock) {this.stock = stock;}
 
     public LocalDateTime getCreatedAt() {return createdAt;}
-
     public LocalDateTime getUpdatedAt() {return updatedAt;}
 }
