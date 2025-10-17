@@ -2,12 +2,10 @@ package com.kaua_dev.product_service.controller;
 
 
 import com.kaua_dev.product_service.domain.product.Product;
+import com.kaua_dev.product_service.domain.product.ProductDTO;
 import com.kaua_dev.product_service.service.ProductService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,4 +32,26 @@ public class ProductController {
 
         return ResponseEntity.ok().body(product);
     }
+
+    @PostMapping
+    public ResponseEntity<Product> create(@RequestBody ProductDTO data) {
+        Product product = service.create(data);
+
+        return ResponseEntity.ok().body(product);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Product> update(@PathVariable("id") Long id, @RequestBody ProductDTO data) {
+        Product product = service.update(id, data);
+
+        return ResponseEntity.ok().body(product);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
+        service.delete(id);
+
+        return ResponseEntity.ok().body(null);
+    }
+
 }
