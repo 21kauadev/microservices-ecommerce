@@ -1,5 +1,5 @@
 server:
-  port: 8100 # serviços normais vão começar daqui.
+  port: 8100 # serviï¿½os normais vï¿½o comeï¿½ar daqui.
 spring:
   application:
     name: user-service
@@ -15,3 +15,7 @@ jpa:
     hibernate:
   show-sql: false
   open-in-view: false
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
