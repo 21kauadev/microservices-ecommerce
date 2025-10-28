@@ -1,4 +1,4 @@
-CREATE TABLE product(
+CREATE TABLE products(
     id SERIAL PRIMARY KEY, -- auto increment
     name VARCHAR(80) NOT NULL,
     description TEXT NOT NULL,
