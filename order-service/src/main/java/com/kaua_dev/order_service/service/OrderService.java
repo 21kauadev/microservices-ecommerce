@@ -28,7 +28,7 @@ public class OrderService {
     public List<Order> findAll() {return repository.findAll();}
     public Order findById(Long id) {return repository.findById(id).orElseThrow(OrderNotFoundException::new);}
 
-    public Order create(Long userId) {
+    public Order create(Long userId, List<Long> productIds) {
         Order order = new Order();
 
         // comunicação com user-service
@@ -36,7 +36,8 @@ public class OrderService {
         if (user == null) throw new UserNotFoundException();
 
         // comunicação com product-service
-        ProductClientDTO product = productClient.findById();
+        // precisarei do find many - fazer lá no product-service e no productClient (aqui)
+        ProductClientDTO product = productClient.findMany(productIds);
 
         // EM PROCESSO
     }

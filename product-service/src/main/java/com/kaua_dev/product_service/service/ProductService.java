@@ -6,6 +6,7 @@ import com.kaua_dev.product_service.domain.product.exceptions.ProductNotFound;
 import com.kaua_dev.product_service.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,6 +20,22 @@ public class ProductService {
 
     public List<Product> findAll() {return repository.findAll();}
     public Product findById(Long id) {return repository.findById(id).orElseThrow(ProductNotFound::new);}
+
+    public List<Product> findMany(List<Long> ids) {
+        List<Product> products = new ArrayList<>();
+
+        // LÓGICA POSSIVEL
+        // loop de repetição e só terminar quando achar produto pra cada id fornecido
+
+        for (int i=0; i<=ids.size(); i++) {
+            Product product = repository.findById(ids.get(i)).orElseThrow(ProductNotFound::new);
+
+            products.add(product);
+        }
+
+        // verificar se tá funcionando.
+        return products;
+    }
 
     public Product create(ProductDTO data) {
         Product product = new Product();
